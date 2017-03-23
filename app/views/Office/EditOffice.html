@@ -1,0 +1,91 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Edit Offices/Block Num</h3>
+    </div>
+</div>
+
+<div class="row" ng-controller="editOfficeCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" ng-submit="editoffices(block,size,area)" id="myForm">
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <input type="hidden" id="hid_office_id" />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-3">Project</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" name="drop_proj" id="drop_proj">
+                                        <option ng-repeat="proj in list_proj" value="{{proj._id}}">{{proj.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div><br />
+                            <div class="form-group">
+                                <label class="col-lg-3">Office/Block</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="block" ng-model="block" required />
+                                </div>
+                            </div>
+                            <div style="clear:both"></div><br />
+                            <div class="form-group">
+                                <label class="col-lg-3">Size</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="size" ng-model="size" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-3">Area</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="area" ng-model="area" required />
+                                </div>
+                            </div>
+                            <div style="clear:both"></div><br />
+                            <div class="form-group">
+                                <label class="col-lg-3">Size</label>
+                                <div class="col-lg-9">
+                                    <select name="area_unit" class="form-control" id="area_unit">
+                                        <option value="sq.Feet">sq.Feet</option>
+                                        <option value="sq.Yard">sq.Yard</option>
+                                        <option value="sq.Meters">sq.Meters</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div><br />
+                            <div class="form-group">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-9">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="col-lg-10"></div>
+                                <div class="col-lg-1">
+                                    <button type="submit" class="btn btn-primary" style="text-align:center; float:right;">Save</button>
+                                </div>
+                                <div class="col-lg-1">
+                                    <button type="button" class="btn btn-default" style="text-align:center; float:right;" ng-click="cancelClick()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,314 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Booking</h3>
+    </div>
+</div>
+<div class="row" ng-controller="addbookingCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" ng-submit="addBooking(datepicker,drop_cust,drop_proj,drop_unit)" id="myForm">
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="text" name="datepicker" class="datepicker form-control" id="dtid" ng-model="datepicker" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Customer</label>
+                                <select class="form-control"  ng-model="drop_cust" name="drop_cust" required>
+                                    <option value="">-- Select Customer --</option>
+                                    <option id="cust" ng-repeat="cust in list_cust" value="{{cust._id}}">{{cust.firstname}}</option>
+                                </select>
+                                <br />
+                                <a class="fa fa-plus btn btn-info" ng-click="showNewCustomerModeal()">Add New Customer</a>
+                            </div>
+                            <div class="form-group">
+                                <label>Project</label>
+                                <select class="form-control" id="drop_proj" name="drop_proj" ng-model="drop_proj" required>
+                                    <option value="">-- Select Project --</option>
+                                    <option ng-repeat=" proj in list_proj" value="{{proj._id}}">
+                                        {{proj.name}}
+                                    </option>
+                                </select>
+                                <br />
+                                <a class="fa fa-plus btn btn-info" ng-click="showNewProjectModeal()">Add New Project</a>
+</div>
+                            <div class="form-group">
+                                <label>Unit Num</label>
+                                <select class="form-control" id="drop_unit" name="drop_unit" ng-model="drop_unit" required>
+                                    <option value="">-- Select units --</option>
+                                    <option ng-repeat=" unit in list_unit" value="{{unit._id}}">
+                                        {{unit.Block}}
+                                    </option>
+                                </select>
+                                <br />
+                                <a class="fa fa-plus btn btn-info" ng-click="showNewUnitModeal()">Add New Unit</a></div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Rate.Rs.</label>
+                                <input class="form-control" placeholder="Enter Rate" type="text" name="bookRateRs" ng-model="bookRateRs" onkeyup="mul();" id="bookrt" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Area</label>
+                                <input class="form-control" placeholder="Enter Area" type="text" name="bookArea" ng-model="bookArea" required onkeyup="mul();" id="bookarea">
+                            </div>
+                            <div class="form-group">
+                                <label>Basic Price</label>
+                                <input class="form-control" placeholder="Basic Price" type="text" name="bookBasicPrice" ng-model="bookBasicPrice" id="bookbasprice" >
+                            </div>
+                            <div class="form-group">
+                                <label>Token(%)</label>
+                                <input class="form-control" placeholder="Enter Token(%)" type="text" name="bookTokan" ng-model="bookTokan" onkeyup="mul();" id="booktoken" maxlength="3" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Rs</label>
+                                <input class="form-control" placeholder="Rs" type="text" name="bookRs" ng-model="bookRs" id="bookrs" onkeyup="mul();">
+                            </div>
+                            <div class="form-group">
+                                <label>Pending Amount</label>
+                                <input class="form-control" placeholder="Pending Amount" type="text" name="bookPendingAmt" ng-model="bookPendingAmt" id="bookpenamt" onkeyup="mul();" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>No.OF Installment</label>
+                                <input class="form-control" placeholder="Enter No of Installment" type="text" name="bookNoInstallment" ng-model="bookNoInstallment" id="booknoifins" onkeyup="mul();" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Monthly Installment Will Be</label>
+                                <input class="form-control" placeholder="Monthly Installment" type="text" name="bookMonthInstallment" id="monthins" ng-model="bookMonthInstallment" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align:center;">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--customer model-->
+
+<div class="modal fade" id="myModalcustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" ng-submit="addCustomer(firstName,custEmail,custMobileno,custAddress)" id="myForm">
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" placeholder="Enter First Name" type="text" name="firstName" ng-model="firstName" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input class="form-control" placeholder="Enter Email Address" type="email" name="custEmail" ng-model="custEmail" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Mobile No</label>
+                                <input class="form-control" placeholder="Enter Mobile No" type="text" name="custMobileno" ng-model="custMobileno" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" placeholder="Enter Customer Address" name="custAddress" ng-model="custAddress" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeNewCustomerModeal()">Close</button>
+                        <button type="submit" class="btn btn-primary" style="text-align:center; float:right;">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!--Project Model-->
+<div class="modal fade" id="myModalProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Project</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" ng-submit="addProj(projName,projAddr,projCity)" id="myForm">
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Enter Project Name" type="text" name="projName" ng-model="projName" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" placeholder="Enter Project City" type="text" name="projCity" ng-model="projCity" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" placeholder="Enter Project Address" name="projAddr" ng-model="projAddr" required rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                       
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeNewProjectModeal()">Close</button>
+                        <button type="submit" class="btn btn-primary" style="text-align:center; float:right;">Save</button>
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!--Unit Model-->
+<div class="modal fade" id="myModalUnit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Unit</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" ng-submit="addoffices()" id="myForm">
+                    <input type="hidden" id="imax" name="imax" value="1" />
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label class="col-lg-3">Project</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control" id="drop_projselect" name="drop_projselect">
+                                        <option ng-repeat="proj in list_proj" value="{{proj._id}}">{{proj.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div><br />
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Block/Office No</th>
+                                    <th>Size</th>
+                                    <th>Area</th>
+                                    <th>Area unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="tr_1">
+                                    <td><input type="hidden" id="check_row_1" value="yes" /></td>
+                                    <td><input type="text" class="form-control" id="block_1" required /> </td>
+                                    <td><input type="text" class="form-control" id="size_1" required /></td>
+                                    <td><input type="text" class="form-control" id="area_1" required /></td>
+                                    <td><select id="area_unit_1" class="form-control"><option value="sq.Feet">sq.Feet</option><option value="sq.Yard">sq.Yard</option><option value="sq.Meters">sq.Meters</option></select></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeNewUnitModeal()">Close</button>
+                        <button type="submit" class="btn btn-primary" style="text-align:center; float:right;">Save</button>
+                    </div>
+
+                </form>
+            </div>
+           
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#dtid").datepicker().datepicker("setDate", new Date());
+        $('input[name="datepicker"]').datepicker();
+        locale: {
+                format: 'DD/MM/YYYY'
+
+        }
+    });
+    function mul() {
+        var txtFirstNumberValue = document.getElementById('bookrt').value;
+        var txtSecondNumberValue = document.getElementById('bookarea').value;
+        var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+        if (!isNaN(result)) {
+            document.getElementById('bookbasprice').value = result;
+        }
+        var txtthirdvalue = document.getElementById('bookbasprice').value;
+        var txtfourthvalue = document.getElementById('booktoken').value;
+        var result2 = ((parseInt(txtfourthvalue) * parseInt(txtthirdvalue)) / 100);
+        if (!isNaN(result2)) {
+            document.getElementById('bookrs').value = result2;
+        }
+        var txtfifthvalue = document.getElementById('bookrs').value;
+        var txtsixvalue = document.getElementById('bookbasprice').value;
+        var result3 = parseInt(txtsixvalue) - parseInt(txtfifthvalue);
+        if (!isNaN(result)) {
+            document.getElementById('bookpenamt').value = result3;
+        }
+
+        var txtssevenvalue = document.getElementById('booknoifins').value;
+        var txteightvalue = document.getElementById('bookpenamt').value;
+        var result4 = parseInt(txteightvalue) / parseInt(txtssevenvalue);
+        if (!isNaN(result)) {
+            document.getElementById('monthins').value = result4;
+        }
+
+        //var result3 = (parseInt(txtthirdvalue) * 100) / parseInt(txtfourthvalue);
+        //if (!isNaN(result2)) {
+        //    document.getElementById('bookrs').value = result3;
+        //}
+    }
+    function sum() {
+        var txtfifthvalue = document.getElementById('bookrs').value;
+        var txtsixvalue = document.getElementById('bookbasprice').value;
+        var result = parseInt(txtsixvalue) - parseInt(txtfifthvalue);
+        if (!isNaN(result)) {
+            document.getElementById('bookpenamt').value = result;
+        }
+
+    }
+</script>

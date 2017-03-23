@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Add Project</h3>
+    </div>
+</div>
+
+<div class="row" ng-controller="addProjCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" ng-submit="addProj(projName,projAddr,projCity)" id="myForm">
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Enter Project Name" type="text" name="projName" ng-model="projName" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" placeholder="Enter Project City" type="text" name="projCity" ng-model="projCity" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" placeholder="Enter Project Address" name="projAddr" ng-model="projAddr" required rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="text-align:center; float:right;">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

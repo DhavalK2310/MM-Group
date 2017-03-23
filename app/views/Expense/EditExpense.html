@@ -1,0 +1,68 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Edit Expense</h3>
+    </div>
+</div>
+
+<div class="row" ng-controller="editExpeCtrl">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form role="form" ng-submit="editExpe(datepicker,expProjid,expHead,expComment,expAmount)" id="myForm">
+                    <div class="alert alert-success" ng-show="successshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="alert alert-danger" ng-show="errorshow">
+                        {{messageShow}}
+                    </div>
+                    <div class="row">
+                        <input type="hidden" id="expehdid" />
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="text" name="datepicker" class="datepicker form-control" ng-model="datepicker" />
+                            </div>
+                            <div class="form-group">
+                                <label>Project</label>
+                                <select name="expProjid" ng-model="expProjid"  class="form-control">
+                                    <!--<option value="{{expProjid}}">{{expProjid[1]}}</option>-->
+                                    <option value="0">Not Applicable</option>
+                                    <option ng-repeat="project in list_proj" value="{{project._id}}">{{project.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Head</label>
+								<select class="form-control" ng-model="expHead" name="expHead">
+                                    <option value="{{expHead}}" selected>{{expHead}}</option>
+                                    <option value="rati">Rati</option>
+                                    <option value="concrit">Concrit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Comment</label>
+                                <input type="text" class="form-control" placeholder="Enter Comment" name="expComment" ng-model="expComment" />
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input class="form-control" placeholder="Enter Amount" type="text" name="expAmount" ng-model="expAmount">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="text-align:center; float:right;">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+       // $("#dtid").datepicker().datepicker("setDate", new Date());
+        $('input[name="datepicker"]').datepicker();
+        locale: {
+                format: 'dd/MM/yyyy'
+        }
+    });
+</script>

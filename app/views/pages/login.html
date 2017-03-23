@@ -1,0 +1,88 @@
+<style type="text/css">
+    body {
+        background-color: #15141A !important;
+    }
+</style>
+<!-- <!--<div class="container"> -->
+    <!-- <div class="row"> -->
+        <!-- <div class="col-md-4 col-md-offset-4"> -->
+            <!-- <img src="/logo.png" class="col-md-offset-2" style=" margin-top: 15%;" /> -->
+
+
+            <!-- <div class="login-panel panel panel-default" style=" margin-top: 10%;"> -->
+
+                <!-- <div class="panel-heading"> -->
+
+                    <!-- <h3 class="panel-title">Please Sign In</h3> -->
+                <!-- </div> -->
+                <!-- <div class="panel-body" ng-controller="LoginCtrl"> -->
+                    <!-- <form role="form" ng-submit="checkValid(myUsername,myPass)"> -->
+                        <!-- <fieldset> -->
+                            <!-- <div class="form-group"> -->
+                                <!-- <input class="form-control" placeholder="E-mail" name="myUsername" type="email" ng-model="myUsername" autofocus> -->
+                            <!-- </div> -->
+                            <!-- <div class="form-group"> -->
+                                <!-- <input class="form-control" placeholder="Password" name="myPass" type="password" ng-model="myPass" value=""> -->
+                            <!-- </div> -->
+
+
+                            <!-- <input type="submit" class="btn btn-outline btn-info btn-lg btn-block" value="Login"> -->
+                            <!-- <div class="checkbox"> -->
+                                <!-- <label> -->
+                                    <!-- <a ui-sref="ForgotPassword">Forgot Password</a> -->
+                                <!-- </label> -->
+                            <!-- </div> -->
+                        <!-- </fieldset> -->
+                        <!-- <p style="color:red;">{{aa}}</p> -->
+                    <!-- </form> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div>--> 
+<!-- <script src="scripts/controllers/loginContoller.js"></script> -->
+
+
+<br />
+<div class="container">
+    <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h3><img src="/app/logo.png" style="color:black;width:50%;height:auto;" /></h3>
+                            <h2 class="text-center">Sign In</h2>
+                            <p>Please Sign In Here.</p>
+                            <div class="panel-body" ng-controller="LoginCtrl">
+                                <form class="form" ng-submit="checkUser(myUsername,myPass)" role="form">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
+                                                <input id="emailInput" placeholder="email address" class="form-control" type="email" ng-model="myUsername" autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-log-in color-blue"></i></span>
+                                                <input class="form-control" placeholder="Password" name="myPass" type="password" ng-model="myPass" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="btn btn-lg btn-primary btn-block" value="Login    " type="submit">
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <a ui-sref="/ForgotPassword">Forgot Password</a>
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+</div>
